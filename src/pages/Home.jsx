@@ -13,7 +13,7 @@ const Home = () => {
     // Debounce the search term, author term, and query
     // const debouncedSearchTerm = useDebounce(searchTerm, 300);
     // const debouncedAuthorTerm = useDebounce(authorTerm, 300);
-    const debouncedQuery = useDebounce(query, 300);
+    const debouncedQuery = useDebounce(query, 600);
 
     const fetchBooks = async ({ title, author, q }) => {
         setLoading(true);
@@ -31,7 +31,7 @@ const Home = () => {
     };
 
     // useEffect(() => {
-       
+
     //     if (debouncedSearchTerm || debouncedAuthorTerm) {
     //         fetchBooks({ title: debouncedSearchTerm, author: debouncedAuthorTerm });
     //     }
@@ -57,7 +57,7 @@ const Home = () => {
                 />
             </div>
 
-            
+
             {/* <div className="mb-4">
                 <SearchBar
                     searchTerm={searchTerm}
