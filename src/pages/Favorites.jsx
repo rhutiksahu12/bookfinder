@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import MainLayout from '@/layout/Main.Layout';
+import MainLayout from '@/layout/MainLayout';
 import React from 'react';
 
 

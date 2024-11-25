@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
-import MainLayout from './layout/Main.Layout';
+import MainLayout from './layout/MainLayout';
 
 
 const App = () => {
