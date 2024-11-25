@@ -4,15 +4,15 @@ import SearchBar from '../components/SearchBar';
 import BookList from '../components/BookList';
 
 const Home = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [authorTerm, setAuthorTerm] = useState('');
+    // const [searchTerm, setSearchTerm] = useState('');
+    // const [authorTerm, setAuthorTerm] = useState('');
     const [query, setQuery] = useState(''); // For the q parameter search
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
 
     // Debounce the search term, author term, and query
-    const debouncedSearchTerm = useDebounce(searchTerm, 300);
-    const debouncedAuthorTerm = useDebounce(authorTerm, 300);
+    // const debouncedSearchTerm = useDebounce(searchTerm, 300);
+    // const debouncedAuthorTerm = useDebounce(authorTerm, 300);
     const debouncedQuery = useDebounce(query, 300);
 
     const fetchBooks = async ({ title, author, q }) => {
@@ -30,15 +30,15 @@ const Home = () => {
         setLoading(false);
     };
 
-    useEffect(() => {
-        // Title and author search
-        if (debouncedSearchTerm || debouncedAuthorTerm) {
-            fetchBooks({ title: debouncedSearchTerm, author: debouncedAuthorTerm });
-        }
-    }, [debouncedSearchTerm, debouncedAuthorTerm]);
+    // useEffect(() => {
+       
+    //     if (debouncedSearchTerm || debouncedAuthorTerm) {
+    //         fetchBooks({ title: debouncedSearchTerm, author: debouncedAuthorTerm });
+    //     }
+    // }, [debouncedSearchTerm, debouncedAuthorTerm]);
 
     useEffect(() => {
-        // General query search
+        // query search
         if (debouncedQuery) {
             fetchBooks({ q: debouncedQuery });
         }
@@ -48,7 +48,6 @@ const Home = () => {
         <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold text-center mb-4">Book Finder</h1>
 
-            {/* Q Parameter Search */}
             <div className="mb-4">
                 <SearchBar
                     searchTerm={query}

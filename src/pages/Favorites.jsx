@@ -1,10 +1,32 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import MainLayout from '@/layout/MainLayout';
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 const Favorites = () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    // Retrieve favorites
+    const [favorites, setFavorites] = useState(() => {
+        return JSON.parse(localStorage.getItem('favorites') || '[]');
+    });
+
+    const { toast } = useToast()
+
+
+    // remove a favorite
+    const removeFavorite = (indexToRemove, book) => {
+        try {
+            const updatedFavorites = favorites.filter((_, index) => index !== indexToRemove);
+            setFavorites(updatedFavorites);
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            toast({
+                title:`${book.title} removed from favorites`,
+                variant:"destructive"
+            })
+        } catch (e) {
+            console.error(e)
+        }
+    }
 
     return (
         <MainLayout>
@@ -19,12 +41,19 @@ const Favorites = () => {
                                 </CardHeader>
                                 <CardContent>
                                     <p>Author: {book.author_name?.[0]}</p>
+                                    <Button
+                                        variant="outline"
+                                        className="mt-2"
+                                        onClick={() => removeFavorite(index, book)}
+                                    >
+                                        Remove from Favorites
+                                    </Button>
                                 </CardContent>
                             </Card>
                         ))}
                     </div>
                 ) : (
-                    <p>No favorites saved yet.</p>
+                    <p className="text-center">No favorites saved yet.</p>
                 )}
             </div>
         </MainLayout>

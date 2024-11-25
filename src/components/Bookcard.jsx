@@ -8,14 +8,28 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from './ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 
 const BookCard = ({ book }) => {
+
+    const { toast } = useToast()
+
     const handleFavorite = () => {
-        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-        favorites.push(book);
-        localStorage.setItem('favorites', JSON.stringify(favorites));
+        try {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            favorites.push(book);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            toast({
+                title: `${book.title} added to your favorites`,
+                duration: 1500
+            })
+        } catch (e) {
+            console.log(e)
+        }
     };
+
+
 
     return (
         <Card>
