@@ -4,23 +4,28 @@ import SearchBar from '../components/SearchBar';
 import BookList from '../components/BookList';
 
 const Home = () => {
+
     // const [searchTerm, setSearchTerm] = useState('');
     // const [authorTerm, setAuthorTerm] = useState('');
-    const [query, setQuery] = useState(''); // For the q parameter search
+
+    const [query, setQuery] = useState(''); 
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
 
     // Debounce the search term, author term, and query
     // const debouncedSearchTerm = useDebounce(searchTerm, 300);
     // const debouncedAuthorTerm = useDebounce(authorTerm, 300);
+
     const debouncedQuery = useDebounce(query, 600);
 
     const fetchBooks = async ({ title, author, q }) => {
         setLoading(true);
 
         const queryParams = [];
+
         // if (title) queryParams.push(`title=${encodeURIComponent(title)}`);
         // if (author) queryParams.push(`author=${encodeURIComponent(author)}`);
+
         if (q) queryParams.push(`q=${encodeURIComponent(q)}`);
 
         const response = await fetch(`https://openlibrary.org/search.json?${queryParams.join('&')}`);
@@ -31,17 +36,18 @@ const Home = () => {
     };
 
     // useEffect(() => {
-
     //     if (debouncedSearchTerm || debouncedAuthorTerm) {
     //         fetchBooks({ title: debouncedSearchTerm, author: debouncedAuthorTerm });
     //     }
     // }, [debouncedSearchTerm, debouncedAuthorTerm]);
 
     useEffect(() => {
+
         // query search
         if (debouncedQuery) {
             fetchBooks({ q: debouncedQuery });
         }
+        
     }, [debouncedQuery]);
 
     return (

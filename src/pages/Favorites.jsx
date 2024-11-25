@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
 const Favorites = () => {
+    
     // Retrieve favorites
     const [favorites, setFavorites] = useState(() => {
         return JSON.parse(localStorage.getItem('favorites') || '[]');

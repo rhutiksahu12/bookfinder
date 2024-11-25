@@ -14,6 +14,7 @@ const SearchBar = ({
 }) => {
     return (
         <div className="flex flex-col md:flex-row gap-4">
+
             {/* {advanced ? (
                 <>
                     <Input
@@ -32,6 +33,7 @@ const SearchBar = ({
                     />
                 </>
             ) : ( */}
+
                 <Input
                     type="text"
                     placeholder={placeholder}
@@ -39,7 +41,9 @@ const SearchBar = ({
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="flex-1"
                 />
+
             {/* )} */}
+            
             <Button variant="outline" onClick={clearSearch}>
                 Clear
             </Button>
